@@ -118,4 +118,9 @@ describe('{{^id}}', function(){
     var user = { admin: false, authenticated: false };
     mm('{{^admin}}{{^authenticated}}nope{{/}}{{/}}', user).should.equal('nope');
   })
+
+  it('should consider empty arrays falsy', function(){
+    var user = { admin: [] };
+    mm('admin: {{^admin}}nope{{/admin}}', user).should.equal('admin: nope');
+  })
 })
