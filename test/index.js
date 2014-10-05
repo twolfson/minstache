@@ -120,7 +120,8 @@ describe('{{^id}}', function(){
   })
 
   it('should consider empty arrays falsy', function(){
-    var user = { admin: [] };
-    mm('admin: {{^admin}}nope{{/admin}}', user).should.equal('admin: nope');
+    var users = { users: [] };
+    mm('users exist: {{^users}}nope{{/users}}', users)
+     .should.equal('users exist: nope');
   })
 })
