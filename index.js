@@ -127,10 +127,6 @@ function indent(str) {
 function section(obj, prop, negate, thunk) {
   var val = obj[prop];
   if (Array.isArray(val)) {
-    // has elements, {{#section}}: iterates
-    // has elements, {{^section}}: returns empty
-    // no elements, {{#section}}: iterates
-    // no elements, {{^section}}: runs thunk
     if (negate) {
       return val.length ? '' : thunk(obj);
     } else {

@@ -124,4 +124,10 @@ describe('{{^id}}', function(){
     mm('users exist: {{^users}}nope{{/users}}', users)
      .should.equal('users exist: nope');
   })
+
+  it('should ignore populated arrays', function(){
+    var users = { users: [ 'tobi' ] };
+    mm('users exist: {{#users}}yep{{/users}}{{^users}}nope{{/users}}', users)
+     .should.equal('users exist: yep');
+  })
 })
