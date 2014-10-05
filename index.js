@@ -128,13 +128,13 @@ function section(obj, prop, negate, thunk) {
   var val = obj[prop];
   if (Array.isArray(val)) {
     // has elements, {{#section}}: iterates
-    // has elements, {{^section}}: runs thunk
-    // no elements, {{#section}}: runs thunk. fuck.
+    // has elements, {{^section}}: returns empty
+    // no elements, {{#section}}: iterates
     // no elements, {{^section}}: runs thunk
-    if (val.length && !negate) {
-      return val.map(thunk).join('');
+    if (negate) {
+      return val.length ? '' : thunk(obj);
     } else {
-      return thunk(obj);
+      return val.map(thunk).join('');
     }
   }
   if ('function' == typeof val) return val.call(obj, thunk(obj));
